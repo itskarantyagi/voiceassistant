@@ -1,12 +1,8 @@
 import webbrowser
 import pyttsx3
-import time
 import datetime
 import speech_recognition as sr
 import wikipedia
-import os
-import smtplib #for sending email
-import subprocess
 
 engine = pyttsx3.init('sapi5') #microsoft speech API
 voices = engine.getProperty('voices')
@@ -17,7 +13,7 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
-def wishMe():
+def starting():
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
         speak("Good Morning!")
@@ -52,7 +48,7 @@ def takeCommand():
 
 
 if __name__ == "__main__":
-    wishMe()
+    starting()
     while True:
         query = takeCommand().lower()
         if 'wikipedia' in query:
@@ -70,7 +66,7 @@ if __name__ == "__main__":
             webbrowser.open('https://www.youtube.com/watch?v=uQ5zYwiEUrA')
 
         elif 'chat' in query:
-            webbrowser.open("https://app.slack.com/")
+            webbrowser.open("https://app.slack.com/client/T04BY2JED/G1STUSE7M")
 
         elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
@@ -79,7 +75,4 @@ if __name__ == "__main__":
         elif 'stop' or 'exit' or 'shut up':
             speak("Suspending operations")
             exit()
-
-
-
-
+            
